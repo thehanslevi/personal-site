@@ -2,6 +2,11 @@
 const services = [
   {
     number: '01',
+    color: 'coral',
+    accentBg: 'bg-coral',
+    accentLight: 'bg-coral-light',
+    accentText: 'text-coral',
+    accentBorder: 'border-coral',
     title: 'Strategic accounts and customer success',
     description:
       'Senior relationship leadership for complex, high-touch client environments. I own accounts, align stakeholders, and drive adoption, retention, and long-term value.',
@@ -15,6 +20,11 @@ const services = [
   },
   {
     number: '02',
+    color: 'teal',
+    accentBg: 'bg-teal',
+    accentLight: 'bg-teal-light',
+    accentText: 'text-teal',
+    accentBorder: 'border-teal',
     title: 'Program management and operations',
     description:
       'Standing up new programs, managing cross-functional portfolios, and designing operating rhythms. From AI initiative governance to philanthropic grantmaking to innovation programming.',
@@ -28,6 +38,11 @@ const services = [
   },
   {
     number: '03',
+    color: 'gold',
+    accentBg: 'bg-gold',
+    accentLight: 'bg-gold-light',
+    accentText: 'text-gold',
+    accentBorder: 'border-gold',
     title: 'Fundraising, partnerships, and stakeholder strategy',
     description:
       'Capital raises, partnership development, donor engagement, and board-level strategic planning. Especially for mission-driven organizations, family offices, and foundations.',
@@ -39,51 +54,79 @@ const services = [
     ],
     proof: '$7M+ raised for a new institutional initiative. $500M AUM fund advised on portfolio construction and exits.',
   },
+  {
+    number: '04',
+    color: 'violet',
+    accentBg: 'bg-violet',
+    accentLight: 'bg-violet-light',
+    accentText: 'text-violet',
+    accentBorder: 'border-violet',
+    title: 'Arts and cultural producing',
+    description:
+      'Producing, programming, and operational leadership for live events, festivals, film, and theater. I bring the same strategic rigor to creative projects that I bring to enterprise work.',
+    outcomes: [
+      'Festival, conference, and event production and programming',
+      'Documentary and narrative film producing',
+      'Artist and creative community engagement',
+      'Communications, marketing, and audience development for cultural organizations',
+    ],
+    proof: 'Produced documentary film and theater across the southeastern U.S. Designed and hosted conferences, events, and festivals for arts and social impact organizations.',
+  },
 ]
 ---
 
-<section id="services" class="py-24 md:py-32 bg-stone-100/50">
-  <div class="max-w-5xl mx-auto px-6">
+<section id="services" class="py-24 md:py-32 relative overflow-hidden">
+  <!-- subtle geometric background -->
+  <div class="absolute inset-0 geo-pattern pointer-events-none"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6">
     <div class="grid md:grid-cols-12 gap-12 md:gap-16 mb-16 md:mb-20">
       <div class="md:col-span-4">
-        <p class="text-sm font-medium tracking-widest uppercase text-stone-400">Services</p>
+        <div class="flex items-center gap-3 mb-1">
+          <span class="w-3 h-3 rounded-sm bg-gold rotate-45"></span>
+          <p class="text-sm font-medium tracking-widest uppercase text-base-400">Services</p>
+        </div>
       </div>
       <div class="md:col-span-8">
-        <h2 class="font-serif text-3xl md:text-4xl font-medium text-stone-900 leading-snug tracking-tight">
-          How I work with clients.
+        <h2 class="font-serif text-3xl md:text-4xl font-medium text-base-900 leading-snug tracking-tight">
+          How I work.
         </h2>
-        <p class="mt-4 text-stone-500 text-[17px] leading-relaxed">
-          Available for fractional engagements, advisory retainers, and project-based work.
-          I also take full-time roles when the fit is right.
+        <p class="mt-4 text-base-500 text-[17px] leading-relaxed">
+          Available for fractional engagements, advisory retainers, board service, and project-based work.
         </p>
       </div>
     </div>
 
-    <div class="space-y-16 md:space-y-20">
+    <div class="space-y-12 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
       {services.map((service) => (
-        <div class="grid md:grid-cols-12 gap-8 md:gap-16">
-          <div class="md:col-span-4">
-            <span class="text-sm font-medium text-stone-400">{service.number}</span>
-            <h3 class="mt-2 font-serif text-2xl font-medium text-stone-900 leading-snug">
+        <div class={`group relative p-8 rounded-2xl border border-base-200 bg-base-50 hover:border-transparent hover:shadow-lg transition-all duration-300`}>
+          <div class={`absolute top-0 left-8 right-8 h-[3px] ${service.accentBg} rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+
+          <div class="flex items-center gap-3 mb-4">
+            <span class={`flex items-center justify-center w-8 h-8 rounded-lg ${service.accentLight} text-xs font-semibold ${service.accentText}`}>
+              {service.number}
+            </span>
+            <h3 class="font-serif text-xl font-medium text-base-900 leading-snug">
               {service.title}
             </h3>
           </div>
-          <div class="md:col-span-8">
-            <p class="text-stone-600 text-[17px] leading-relaxed">
-              {service.description}
-            </p>
-            <ul class="mt-6 space-y-3">
-              {service.outcomes.map((outcome) => (
-                <li class="flex items-start gap-3 text-stone-600 text-[15px]">
-                  <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-stone-400 shrink-0" />
-                  {outcome}
-                </li>
-              ))}
-            </ul>
-            <p class="mt-6 text-sm text-stone-500 italic border-l-2 border-stone-300 pl-4">
-              {service.proof}
-            </p>
-          </div>
+
+          <p class="text-base-600 text-[15px] leading-relaxed mb-5">
+            {service.description}
+          </p>
+
+          <ul class="space-y-2.5 mb-6">
+            {service.outcomes.map((outcome) => (
+              <li class="flex items-start gap-2.5 text-base-600 text-[14px]">
+                <span class={`mt-1.5 w-1.5 h-1.5 rounded-full ${service.accentBg} shrink-0 opacity-60`} />
+                {outcome}
+              </li>
+            ))}
+          </ul>
+
+          <p class={`text-[13px] text-base-500 italic border-l-2 ${service.accentBorder} pl-3 opacity-70`}>
+            {service.proof}
+          </p>
         </div>
       ))}
     </div>
