@@ -4,3 +4,4 @@ dist
 .env
 .DS_Store
 Hannah_website_headshot.jpg
+.vercel
